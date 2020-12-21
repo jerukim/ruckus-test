@@ -97,14 +97,7 @@ const RestaurantItem = ({ restaurant }) => {
                 </Grid>
             </Card>
 
-            {/* <Modal
-                className={classes.modal}
-                open={modalShowing}
-                onClose={closeModel}
-                BackdropComponent={Backdrop}
-            > */}
             <RestaurantDetail restaurant={restaurant} open={modalShowing} onClose={closeModel} />
-            {/* </Modal> */}
         </Grid>
     )
 }

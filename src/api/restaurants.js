@@ -1,9 +1,6 @@
 import { apiEndpoint } from '../constants'
 import { apiToken } from '../secrets'
 
-import restaurants from '../seed/restaurants.json'
-
-// default to new york and 
 export const getRestaurants = async () => {
     try {
         const res = await fetch(`${apiEndpoint}/search?entity_id=94741&entity_type=zone&q=Manhattan%2C%20New%20York%20City&cuisines=55`, {
@@ -23,15 +20,12 @@ export const getRestaurants = async () => {
 
 export const getRestaurantReviews = async (restaurantId) => {
     try {
-        const res = await fetch(`${apiEndpoint}/reviews?res_id${restaurantId}`, {
+        const res = await fetch(`${apiEndpoint}/reviews?res_id=${restaurantId}`, {
             headers: {
                 'accept': 'application/json',
                 'user-key': apiToken,
             },
-            // mode: 'no-cors'
         })
-
-        console.log(res)
 
         return res.json()
     } catch (error) {
@@ -39,9 +33,9 @@ export const getRestaurantReviews = async (restaurantId) => {
     }
 }
 
-export const getRestaurantPhotos = async (url) => {
+export const getRestaurantMenu = async (restaurantId) => {
     try {
-        const res = await fetch(url, {
+        const res = await fetch(`${apiEndpoint}/dailymenu?res_id=${restaurantId}`, {
             headers: {
                 'accept': 'application/json',
                 'user-key': apiToken,
