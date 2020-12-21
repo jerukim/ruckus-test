@@ -1,17 +1,15 @@
 import React, { useState } from 'react'
 import {
     makeStyles,
-    useTheme,
     Grid,
     Card,
-    CardContent,
     CardMedia,
     Typography,
-    Modal,
-    Backdrop
 } from '@material-ui/core'
 import Rating from './Rating'
 import RestaurantDetail from './RestaurantDetail'
+
+import { grayImage } from '../constants'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,10 +40,10 @@ const RestaurantItem = ({ restaurant }) => {
     }
 
     const { thumb, featured_image } = restaurant
-    const image = thumb || featured_image
+    const image = thumb || featured_image || grayImage
 
     return (
-        <Grid item xs={6}>
+        <Grid item xs={12} lg={6}>
             <Card className={classes.root} onClick={openModel}>
                 <Grid container spacing={2}>
                     <Grid item>
@@ -76,14 +74,6 @@ const RestaurantItem = ({ restaurant }) => {
                                 </Typography>
                             </Grid>
                         </Grid>
-
-                        {/* <Grid container spacing={1}>
-                            {restaurant.highlights.map(highlight =>
-                                <Grid item>
-                                    {highlight}
-                                </Grid>
-                            )}
-                        </Grid> */}
                     </Grid>
 
                     <Grid item xs={3} container direction='column'>

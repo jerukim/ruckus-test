@@ -1,1 +1,2 @@
 export const apiEndpoint = 'https://developers.zomato.com/api/v2.1'
+export const grayImage = 'https://media.tarkett-image.com/large/TH_24567080_24594080_24596080_24601080_24563080_24565080_24588080_001.jpg'

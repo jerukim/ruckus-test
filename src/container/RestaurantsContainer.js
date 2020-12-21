@@ -9,12 +9,10 @@ import {
     Container,
     makeStyles,
     Typography,
-    useTheme,
 } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        // display: 'flex',
         width: '90%'
     }
 }))

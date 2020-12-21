@@ -11,9 +11,12 @@ import {
     Avatar,
     Link
 } from '@material-ui/core'
-import Rating from './Rating'
-
 import { getRestaurantReviews } from '../api/restaurants'
+import Rating from './Rating'
+import ReviewsList from './ReviewsList'
+import ReviewItem from './ReviewItem'
+import AmenitiesList from './AmenitiesList'
+import AmenityItem from './AmenityItem'
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -23,10 +26,8 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         width: '80%',
-        // height: '100%',
         maxHeight: '100%',
         backgroundColor: theme.palette.background.paper,
-        // border: '2px solid #000',
         borderRadius: 5,
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
@@ -86,7 +87,7 @@ const RestaurantDetail = ({ restaurant, open, onClose }) => {
                         <Grid item>
                             <Grid item container direction='column'>
                                 {restaurant.timings.split(',').map(hours =>
-                                    <Typography>{hours}</Typography>
+                                    <Typography key={hours}>{hours}</Typography>
                                 )}
                             </Grid>
                         </Grid>
@@ -95,50 +96,35 @@ const RestaurantDetail = ({ restaurant, open, onClose }) => {
                     <Divider />
 
                     <Grid item container justify='space-between'>
-                        {/* AMENITIES */}
-                        <Grid item xs={8} container spacing={1}>
+
+                        <AmenitiesList>
                             {restaurant.highlights.map(highlight =>
-                                <Grid item>
-                                    <Chip label={highlight} />
-                                </Grid>
+                                <AmenityItem key={highlight} amenity={highlight} />
                             )}
-                        </Grid>
+                        </AmenitiesList>
 
                         <Grid item>
                             <Link href={restaurant.url}>Website</Link>
                             <Typography>{restaurant.phone_numbers}</Typography>
                             {restaurant.location.address.split(',').map(addressPart =>
-                                <Typography>{addressPart}</Typography>
+                                <Typography key={addressPart}>{addressPart}</Typography>
                             )}
                         </Grid>
                     </Grid>
                 </Grid>
 
-
                 <Divider />
 
                 <Grid item>
-                    <Typography>Reviews:</Typography>
-                    {/* <div style={{ overflow: 'scroll' }} > */}
-                    <Grid container direction='column' spacing={2} >
+                    <ReviewsList>
                         {reviews.map(({ review }) =>
-                            <Grid item container>
-                                <Grid item xs={2} container direction='column' alignItems='center'>
-                                    <Avatar src={review.user.profile_image} />
-                                    <Typography variant='subtitle2'>{review.user.name}</Typography>
-                                    <Typography variant='subtitle2'>{review.review_time_friendly}</Typography>
-                                </Grid>
-
-                                <Grid item xs={10}>
-                                    <Typography variant='body2' >{review.review_text}</Typography>
-                                </Grid>
-                            </Grid>
+                            <ReviewItem
+                                key={review.id}
+                                review={review}
+                            />
                         )}
-                    </Grid>
-                    {/* </div> */}
+                    </ReviewsList>
                 </Grid>
-
-                {/* </Grid> */}
             </Container>
         </Modal >
     )
