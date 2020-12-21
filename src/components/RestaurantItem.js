@@ -1,17 +1,15 @@
 import React, { useState } from 'react'
 import {
     makeStyles,
-    useTheme,
     Grid,
     Card,
-    CardContent,
     CardMedia,
     Typography,
-    Modal,
-    Backdrop
 } from '@material-ui/core'
 import Rating from './Rating'
 import RestaurantDetail from './RestaurantDetail'
+
+import { grayImage } from '../constants'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,7 +40,7 @@ const RestaurantItem = ({ restaurant }) => {
     }
 
     const { thumb, featured_image } = restaurant
-    const image = thumb || featured_image
+    const image = thumb || featured_image || grayImage
 
     return (
         <Grid item xs={6}>
