@@ -7,12 +7,10 @@ import {
     Backdrop,
     Container,
     Divider,
-    Chip,
-    Avatar,
     Link
 } from '@material-ui/core'
 import { getRestaurantReviews } from '../api/restaurants'
-import Rating from './Rating'
+import RestaurantInfo from './RestaurantInfo'
 import ReviewsList from './ReviewsList'
 import ReviewItem from './ReviewItem'
 import AmenitiesList from './AmenitiesList'
@@ -61,28 +59,7 @@ const RestaurantDetail = ({ restaurant, open, onClose }) => {
                 <Grid container direction='column'  >
                     {/* HEADER */}
                     <Grid item container justify='space-between'>
-                        <Grid item >
-                            <Typography gutterBottom>{restaurant.name}</Typography>
-
-                            <Rating
-                                rating={restaurant.user_rating.aggregate_rating}
-                                votes={restaurant.user_rating.votes}
-                            />
-
-                            <Grid container spacing={1}>
-                                <Grid item>
-                                    <Typography>
-                                        {restaurant.price_range}
-                                    </Typography>
-                                </Grid>
-
-                                <Grid item>
-                                    <Typography>
-                                        {restaurant.cuisines}
-                                    </Typography>
-                                </Grid>
-                            </Grid>
-                        </Grid>
+                        <RestaurantInfo restaurant={restaurant} />
 
                         <Grid item>
                             <Grid item container direction='column'>
