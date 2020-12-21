@@ -6,8 +6,9 @@ import {
     CardMedia,
     Typography,
 } from '@material-ui/core'
-import Rating from './Rating'
+import RestaurantInfo from './RestaurantInfo'
 import RestaurantDetail from './RestaurantDetail'
+import Rating from './Rating'
 
 import { grayImage } from '../constants'
 
@@ -43,7 +44,7 @@ const RestaurantItem = ({ restaurant }) => {
     const image = thumb || featured_image || grayImage
 
     return (
-        <Grid item sm={12} md={6}>
+        <Grid item sm={12} md={6} style={{ width: '100%' }}>
             <Card className={classes.root} onClick={openModel}>
                 <Grid container spacing={2}>
                     <Grid item>
@@ -53,41 +54,28 @@ const RestaurantItem = ({ restaurant }) => {
                         />
                     </Grid>
 
-                    <Grid item xs={6} sm >
-                        <Typography gutterBottom>{restaurant.name}</Typography>
+                    <RestaurantInfo xs={6} sm={5} md={6} lg={5} restaurant={restaurant} />
 
-                        <Rating
-                            rating={restaurant.user_rating.aggregate_rating}
-                            votes={restaurant.user_rating.votes}
-                        />
-
-                        <Grid container spacing={1}>
-                            {/* <Grid item>
-                                <Typography>
-                                    {restaurant.price_range}
-                                </Typography>
-                            </Grid> */}
-
-                            <Grid item>
-                                <Typography>
-                                    {restaurant.cuisines}
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-
-                    <Grid item xs={3} container direction='column'>
+                    <Grid item xs={3} md={3} container direction='column'>
                         <Grid item>
-                            <Typography variant="subtitle1">{restaurant.phone_numbers}</Typography>
+                            <Typography variant="subtitle1">
+                                {restaurant.phone_numbers}
+                            </Typography>
                         </Grid>
                         <Grid item>
-                            <Typography variant="subtitle1">{restaurant.location.address.split(',')[0]}</Typography>
+                            <Typography variant="subtitle1">
+                                {restaurant.location.address.split(',')[0]}
+                            </Typography>
                         </Grid>
                     </Grid>
                 </Grid>
             </Card>
 
-            <RestaurantDetail restaurant={restaurant} open={modalShowing} onClose={closeModel} />
+            <RestaurantDetail
+                restaurant={restaurant}
+                open={modalShowing}
+                onClose={closeModel}
+            />
         </Grid>
     )
 }
