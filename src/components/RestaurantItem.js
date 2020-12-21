@@ -74,14 +74,6 @@ const RestaurantItem = ({ restaurant }) => {
                                 </Typography>
                             </Grid>
                         </Grid>
-
-                        {/* <Grid container spacing={1}>
-                            {restaurant.highlights.map(highlight =>
-                                <Grid item>
-                                    {highlight}
-                                </Grid>
-                            )}
-                        </Grid> */}
                     </Grid>
 
                     <Grid item xs={3} container direction='column'>
