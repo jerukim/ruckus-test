@@ -1,0 +1,1 @@
+export const apiToken = '53b352396873e2f9f5a9c511630c4822'
