@@ -23,10 +23,8 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         width: '80%',
-        // height: '100%',
         maxHeight: '100%',
         backgroundColor: theme.palette.background.paper,
-        // border: '2px solid #000',
         borderRadius: 5,
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
@@ -119,7 +117,6 @@ const RestaurantDetail = ({ restaurant, open, onClose }) => {
 
                 <Grid item>
                     <Typography>Reviews:</Typography>
-                    {/* <div style={{ overflow: 'scroll' }} > */}
                     <Grid container direction='column' spacing={2} >
                         {reviews.map(({ review }) =>
                             <Grid item container>
@@ -135,10 +132,7 @@ const RestaurantDetail = ({ restaurant, open, onClose }) => {
                             </Grid>
                         )}
                     </Grid>
-                    {/* </div> */}
                 </Grid>
-
-                {/* </Grid> */}
             </Container>
         </Modal >
     )
