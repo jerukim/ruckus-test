@@ -11,9 +11,10 @@ import {
     Avatar,
     Link
 } from '@material-ui/core'
-import Rating from './Rating'
-
 import { getRestaurantReviews } from '../api/restaurants'
+import Rating from './Rating'
+import ReviewsList from './ReviewsList'
+import ReviewItem from './ReviewItem'
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -112,26 +113,14 @@ const RestaurantDetail = ({ restaurant, open, onClose }) => {
                     </Grid>
                 </Grid>
 
-
                 <Divider />
 
                 <Grid item>
-                    <Typography>Reviews:</Typography>
-                    <Grid container direction='column' spacing={2} >
+                    <ReviewsList>
                         {reviews.map(({ review }) =>
-                            <Grid item container>
-                                <Grid item xs={2} container direction='column' alignItems='center'>
-                                    <Avatar src={review.user.profile_image} />
-                                    <Typography variant='subtitle2'>{review.user.name}</Typography>
-                                    <Typography variant='subtitle2'>{review.review_time_friendly}</Typography>
-                                </Grid>
-
-                                <Grid item xs={10}>
-                                    <Typography variant='body2' >{review.review_text}</Typography>
-                                </Grid>
-                            </Grid>
+                            <ReviewItem review={review} />
                         )}
-                    </Grid>
+                    </ReviewsList>
                 </Grid>
             </Container>
         </Modal >
