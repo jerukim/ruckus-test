@@ -15,6 +15,8 @@ import { getRestaurantReviews } from '../api/restaurants'
 import Rating from './Rating'
 import ReviewsList from './ReviewsList'
 import ReviewItem from './ReviewItem'
+import AmenitiesList from './AmenitiesList'
+import AmenityItem from './AmenityItem'
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -85,7 +87,7 @@ const RestaurantDetail = ({ restaurant, open, onClose }) => {
                         <Grid item>
                             <Grid item container direction='column'>
                                 {restaurant.timings.split(',').map(hours =>
-                                    <Typography>{hours}</Typography>
+                                    <Typography key={hours}>{hours}</Typography>
                                 )}
                             </Grid>
                         </Grid>
@@ -94,20 +96,18 @@ const RestaurantDetail = ({ restaurant, open, onClose }) => {
                     <Divider />
 
                     <Grid item container justify='space-between'>
-                        {/* AMENITIES */}
-                        <Grid item xs={8} container spacing={1}>
+
+                        <AmenitiesList>
                             {restaurant.highlights.map(highlight =>
-                                <Grid item>
-                                    <Chip label={highlight} />
-                                </Grid>
+                                <AmenityItem key={highlight} amenity={highlight} />
                             )}
-                        </Grid>
+                        </AmenitiesList>
 
                         <Grid item>
                             <Link href={restaurant.url}>Website</Link>
                             <Typography>{restaurant.phone_numbers}</Typography>
                             {restaurant.location.address.split(',').map(addressPart =>
-                                <Typography>{addressPart}</Typography>
+                                <Typography key={addressPart}>{addressPart}</Typography>
                             )}
                         </Grid>
                     </Grid>
@@ -118,7 +118,10 @@ const RestaurantDetail = ({ restaurant, open, onClose }) => {
                 <Grid item>
                     <ReviewsList>
                         {reviews.map(({ review }) =>
-                            <ReviewItem review={review} />
+                            <ReviewItem
+                                key={review.id}
+                                review={review}
+                            />
                         )}
                     </ReviewsList>
                 </Grid>
