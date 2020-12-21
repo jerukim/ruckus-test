@@ -1,9 +1,10 @@
 import './App.css'
+import RestaurantsContainer from './RestaurantsContainer'
 
 function App() {
   return (
     <div className='App'>
-      APP
+      <RestaurantsContainer />
     </div>
   )
 }
