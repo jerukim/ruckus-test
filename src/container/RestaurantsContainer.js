@@ -8,6 +8,7 @@ import RestaurantItem from '../components/RestaurantItem'
 import {
     Container,
     makeStyles,
+    Typography,
     useTheme,
 } from '@material-ui/core'
 
@@ -15,12 +16,6 @@ const useStyles = makeStyles((theme) => ({
     root: {
         // display: 'flex',
         width: '90%'
-    },
-    list: {
-        display: 'flex'
-    },
-    item: {
-        flex: '1'
     }
 }))
 
@@ -36,13 +31,14 @@ const RestaurantsContainer = () => {
 
     return (
         <Container className={classes.root}>
-            <h3>Restaurants</h3>
+            <Typography variant='h4' component='h4'>
+                Italian Restaurants in Manhattan
+            </Typography>
             <RestaurantsList>
                 {restaurants.map(restaurant =>
                     <RestaurantItem
                         key={restaurant.id}
                         restaurant={restaurant}
-                    // onClick
                     />
                 )}
             </RestaurantsList>

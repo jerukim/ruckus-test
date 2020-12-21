@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     makeStyles,
     useTheme,
@@ -6,49 +6,47 @@ import {
     Card,
     CardContent,
     CardMedia,
-    Typography
+    Typography,
+    Modal,
+    Backdrop
 } from '@material-ui/core'
 import Rating from './Rating'
+import RestaurantDetail from './RestaurantDetail'
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         height: 150
     },
-    details: {
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    content: {
-        flex: '1 0 auto',
-    },
     thumb: {
         height: 150,
         width: 150,
     },
-    controls: {
+    modal: {
         display: 'flex',
         alignItems: 'center',
-        paddingLeft: theme.spacing(1),
-        paddingBottom: theme.spacing(1),
-    },
-    playIcon: {
-        height: 38,
-        width: 38,
+        justifyContent: 'center',
     },
 }))
 
 const RestaurantItem = ({ restaurant }) => {
     const classes = useStyles()
-    const theme = useTheme()
+
+    const [modalShowing, setModalShowing] = useState(false)
+
+    const openModel = () => {
+        setModalShowing(true)
+    }
+    const closeModel = () => {
+        setModalShowing(false)
+    }
 
     const { thumb, featured_image } = restaurant
-
     const image = thumb || featured_image
 
     return (
         <Grid item xs={6}>
-            <Card className={classes.root}>
+            <Card className={classes.root} onClick={openModel}>
                 <Grid container spacing={2}>
                     <Grid item>
                         <CardMedia
@@ -66,11 +64,11 @@ const RestaurantItem = ({ restaurant }) => {
                         />
 
                         <Grid container spacing={1}>
-                            <Grid item>
+                            {/* <Grid item>
                                 <Typography>
                                     {restaurant.price_range}
                                 </Typography>
-                            </Grid>
+                            </Grid> */}
 
                             <Grid item>
                                 <Typography>
@@ -98,6 +96,15 @@ const RestaurantItem = ({ restaurant }) => {
                     </Grid>
                 </Grid>
             </Card>
+
+            {/* <Modal
+                className={classes.modal}
+                open={modalShowing}
+                onClose={closeModel}
+                BackdropComponent={Backdrop}
+            > */}
+            <RestaurantDetail restaurant={restaurant} open={modalShowing} onClose={closeModel} />
+            {/* </Modal> */}
         </Grid>
     )
 }

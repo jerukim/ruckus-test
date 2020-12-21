@@ -11,7 +11,7 @@ const Rating = ({ rating, votes }) => {
         <Grid item container spacing={1}>
             <Grid item>
                 <Typography>
-                    {rating}
+                    {rating} stars
                 </Typography>
             </Grid>
             <Grid item>
