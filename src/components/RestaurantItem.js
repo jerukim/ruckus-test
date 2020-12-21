@@ -8,7 +8,6 @@ import {
 } from '@material-ui/core'
 import RestaurantInfo from './RestaurantInfo'
 import RestaurantDetail from './RestaurantDetail'
-import Rating from './Rating'
 
 import { grayImage } from '../constants'
 
